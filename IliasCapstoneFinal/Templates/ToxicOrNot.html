@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spam Detector - Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="header"></div>
+
+    <div class="content vertical-center">
+      <div class="title text-center">
+        <h1>Social Media Toxic Comment Detector</h1>
+        <h2>Interactive Demo</h2>
+      </div>
+
+      <form class="input-container" action="/" method="post">
+        <textarea id="textarea" class="textarea" name="comment" rows="4" cols="50" placeholder="Make a post">{{ request.form["comment"] }}</textarea>
+        <input class="button" type="submit" value="Post">
+        <input class="button" type="button" value="Clear" onclick="document.getElementById('textarea').value = ''">
+      </form>
+
+      {% if Negativity %}
+      <p class="results text-center"><b>Result:</b> <span class="{{ Negativity_Status }}">{{ Negativity }}</span><br>(Confidence: {{ confi }}%)</p>
+      {% endif %}
+
+
+      <a class="text-center" href="/FeatureImportanceTONA" style="margin-right: 10px" >FeatureImportanceTONA</a>
+      <a class="text-center" href="/ConfusionMatrixTONA" style="margin-right: 10px;">ConfusionMatrix</a>
+      <a class="text-center" href="/ROCCurveTONA" style="margin-right: 10px;">ROC Curve</a>
+
+    </div>
+
+    <div class="footer"></div>
+  </body>
+</html>
+
